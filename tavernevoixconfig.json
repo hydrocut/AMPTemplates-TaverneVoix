@@ -1,0 +1,93 @@
+[
+    {
+        "DisplayName": "Clé d'API (TAVERNE_VOIX_CLE)",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Clés:key:1",
+        "Description": "Obligatoire : vide, le serveur vocal refuse de démarrer et le dit dans la console. C'est le nom de la clé que LiveKit reconnaît ; la MÊME valeur va dans l'instance La Taverne (le jeu s'en sert pour signer les clés des joueurs). La fabriquer avec : echo TK$(openssl rand -hex 6). Une lettre au début, puis lettres, chiffres ou _ (3 à 64 caractères). Passée à LiveKit par une variable d'environnement, jamais écrite dans la console ni dans un fichier.",
+        "Keywords": "cle,api,key,livekit,LIVEKIT_KEYS,TAVERNE_VOIX_CLE,jeton",
+        "FieldName": "CleApi",
+        "InputType": "password",
+        "ParamFieldName": "CleApi",
+        "IncludeInCommandLine": false,
+        "ExcludeFromImport": true,
+        "DefaultValue": "",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Secret (TAVERNE_VOIX_SECRET)",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Clés:key:1",
+        "Description": "Obligatoire, au moins 32 caractères : c'est lui qui signe et vérifie les clés des joueurs. Le MÊME dans l'instance La Taverne. Le fabriquer avec : openssl rand -hex 32 (64 caractères). Jamais écrit dans la console ni dans un fichier. Ne le partage jamais ; s'il fuit, en fabriquer un nouveau et le changer aux DEUX endroits, puis relancer les deux instances.",
+        "Keywords": "secret,api,livekit,LIVEKIT_KEYS,TAVERNE_VOIX_SECRET,signature",
+        "FieldName": "SecretApi",
+        "InputType": "password",
+        "ParamFieldName": "SecretApi",
+        "IncludeInCommandLine": false,
+        "ExcludeFromImport": true,
+        "DefaultValue": "",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Adresse publique annoncée",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Réseau:lan:2",
+        "Description": "L'adresse IPv4 PUBLIQUE de la machine (celle du serveur TeamKit : 51.254.47.151). Dans un conteneur ponté, LiveKit ne voit qu'une adresse interne (172.17.x.x) : sans ce réglage, il la donnerait aux navigateurs, qui ne pourraient jamais envoyer leur voix. Une adresse privée ou locale est refusée au démarrage.",
+        "Keywords": "ip,adresse,node_ip,publique,nat,reseau,conteneur",
+        "FieldName": "AdresseAnnoncee",
+        "InputType": "text",
+        "ParamFieldName": "AdresseAnnoncee",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "51.254.47.151",
+        "EnumValues": {}
+    },
+    {
+        "DisplayName": "Personnes par pièce au plus",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Pièces:meeting_room:3",
+        "Description": "Une pièce = une table. 12 suffit pour le poker (6) et les jeux entre potes. Au-delà, LiveKit refuse d'entrer.",
+        "Keywords": "places,participants,max_participants,piece,table",
+        "FieldName": "MaxPlaces",
+        "InputType": "number",
+        "ParamFieldName": "MaxPlaces",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "12",
+        "EnumValues": {},
+        "MinValue": "2",
+        "MaxValue": "50",
+        "Suffix": "personnes"
+    },
+    {
+        "DisplayName": "Pièce vide fermée après",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Pièces:meeting_room:3",
+        "Description": "Une pièce ouverte où personne n'entre est fermée après ce délai (room.empty_timeout). Une pièce que tout le monde a quittée se ferme 20 s après.",
+        "Keywords": "empty_timeout,piece,vide,delai,fermeture",
+        "FieldName": "PieceVide",
+        "InputType": "number",
+        "ParamFieldName": "PieceVide",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "60",
+        "EnumValues": {},
+        "MinValue": "10",
+        "MaxValue": "3600",
+        "Suffix": "secondes"
+    },
+    {
+        "DisplayName": "Niveau du journal",
+        "Category": "Voix de la Taverne:headset_mic",
+        "Subcategory": "Journal:article:4",
+        "Description": "warn (recommandé) : seulement les avertissements et les erreurs, pas une ligne par joueur, donc moins d'adresses gardées dans la console. info : plus de détails (pièces, connexions), pour chercher une panne, puis revenir à warn.",
+        "Keywords": "journal,log,logging,level,warn,info,debug",
+        "FieldName": "NiveauJournal",
+        "InputType": "enum",
+        "ParamFieldName": "NiveauJournal",
+        "IncludeInCommandLine": false,
+        "DefaultValue": "warn",
+        "EnumValues": {
+            "warn": "Avertissements seulement (recommandé)",
+            "info": "Détaillé (pour chercher une panne)",
+            "error": "Erreurs seulement",
+            "debug": "Tout (très bavard, pour un essai court)"
+        }
+    }
+]

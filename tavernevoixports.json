@@ -1,0 +1,23 @@
+[
+    {
+        "Protocol": "TCP",
+        "Port": 7880,
+        "Ref": "SignalPort",
+        "Name": "Signalisation (WebSocket)",
+        "Description": "Les navigateurs s'y connectent en wss://voix.teamkit.fr, et le serveur de la Taverne y fait sortir un joueur d'une piece. A NE PAS ouvrir au monde : nginx de la machine le sert en HTTPS et le pare-feu le ferme a l'exterieur (section 8 de teamkit-pare-feu.sh)."
+    },
+    {
+        "Protocol": "TCP",
+        "Port": 7881,
+        "Ref": "RtcTcpPort",
+        "Name": "Voix en secours TCP",
+        "Description": "Quand l'UDP est bloque (VPN, reseau d'ecole ou d'entreprise), la voix passe par ce port TCP. Ouvert au monde. Le numero doit etre le meme dehors et dans le conteneur."
+    },
+    {
+        "Protocol": "UDP",
+        "Port": 7882,
+        "Ref": "RtcUdpPort",
+        "Name": "Voix (UDP)",
+        "Description": "TOUTES les voix passent par ce seul port UDP (pas de plage 50000-60000). Ouvert au monde. Le numero doit etre le meme dehors et dans le conteneur : LiveKit l'annonce aux navigateurs avec l'adresse publique."
+    }
+]

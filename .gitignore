@@ -1,0 +1,11 @@
+# Ce depot ne contient que le template : le programme LiveKit est telecharge a chaque Update.
+livekit/
+livekit.ancien/
+livekit.new/
+livekit.yaml
+livekit.yaml.nouveau
+.cache/
+*.tar.gz
+*.zip
+.env
+__pycache__/
